@@ -91,11 +91,8 @@ function callbackNewFindIndex(element, index, array) {
 }
 
 Array.prototype.newFindIndex = function (callback) {
-    let output = ''
     for (let i = 0; i < this.length; i++) {
-        output = callback(this[i], i, this)
-        // off
-        if (output === true) {
+        if (callback(this[i], i, this)){
             return i
         }
     }
@@ -142,7 +139,7 @@ Array.prototype.newFilter = function (callback) {
 
 Array.prototype.newConcat = function (array) {
     let output = [...this]
-    for (let i = 0; i < array.length; i++){
+    for (let i = 0; i < array.length; i++) {
         output.push(array[i])
     }
     return output
@@ -155,12 +152,12 @@ Array.prototype.newConcat = function (array) {
 Array.prototype.newIncludes = function (searchElement, fromIndex) {
     let i = this.length + fromIndex;
 
-    if (i === undefined){
+    if (i === undefined) {
         i = 0
     }
-    
-    for (i; i < this.length; i++){
-        if (this[i] === searchElement){
+
+    for (i; i < this.length; i++) {
+        if (this[i] === searchElement) {
             return true
         }
     }
@@ -171,14 +168,14 @@ Array.prototype.newIncludes = function (searchElement, fromIndex) {
 
 // 11 - INDEXOF
 
-Array.prototype.newIndexOf = function (searchElement, fromIndex){
-    if (fromIndex >= this.length){
+Array.prototype.newIndexOf = function (searchElement, fromIndex) {
+    if (fromIndex >= this.length) {
         return -1
     }
 
-    if (fromIndex < 0){
-        for (let i = this.length; i >= this.length + fromIndex; i--){
-            if (this[i] === searchElement){
+    if (fromIndex < 0) {
+        for (let i = this.length; i >= this.length + fromIndex; i--) {
+            if (this[i] === searchElement) {
                 return true
             }
         }
@@ -187,12 +184,12 @@ Array.prototype.newIndexOf = function (searchElement, fromIndex){
 
     let i = 0 + fromIndex;
 
-    if (fromIndex === undefined){
+    if (fromIndex === undefined) {
         i = 0
     }
 
-    for (i; i < this.length; i++){
-        if (this[i] === searchElement){
+    for (i; i < this.length; i++) {
+        if (this[i] === searchElement) {
             return 1
         }
     }
@@ -204,10 +201,10 @@ Array.prototype.newIndexOf = function (searchElement, fromIndex){
 
 Array.prototype.newJoin = function (separator) {
     let output = ''
-    for (let i = 0; i < this.length; i++){
+    for (let i = 0; i < this.length; i++) {
         output += this[i]
-        if (i < this.length - 1){
-            if (separator === undefined){
+        if (i < this.length - 1) {
+            if (separator === undefined) {
                 output += ','
             } else {
                 output += separator
@@ -220,6 +217,17 @@ Array.prototype.newJoin = function (separator) {
 
 // 13 - REDUCE
 
-Array.prototype.newReduce = function () {
+function callbackNewReduce(total, currentValue) {
+    return total + currentValue
+}
+
+Array.prototype.newReduce = function (callback, currentValue, currentIndex, array) {
+    let output = 0
+
+    for (let i = 0; i < this.length; i++) {
+        output = callback(output, this[i])
+    }
+
+    return output
     
 }
