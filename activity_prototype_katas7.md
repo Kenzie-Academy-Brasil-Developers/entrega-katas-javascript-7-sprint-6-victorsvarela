@@ -8,9 +8,10 @@ Mas o que tem de interessante no prototype?
 
 ```js
 Array.prototype.meuNovoMetodo = function() {
-    return this // Este "this" refere-se ao array no qual está 
-                // sendo executado o método. Portanto, ele tem 
-                // as propriedades this.length, this[0], this[1]...this[n]
+    return this
+    // Este "this" refere-se ao array no qual está 
+    // sendo executado o método. Portanto, ele tem 
+    // as propriedades this.length, this[0], this[1]...this[n]
 };
 
 let myArr = ["maçã", "uva", "pera"];
